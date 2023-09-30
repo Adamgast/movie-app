@@ -14,8 +14,7 @@ export class MovieService {
       const result = await responce.json();
       return result;
     } catch (err) {
-      console.error(err);
-      return [];
+      throw new Error(`Error: ${err}`);
     }
   }
 

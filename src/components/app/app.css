@@ -75,3 +75,8 @@ h6 {
 	background-color: #fff;
 	margin: 0 auto;
 }
+@media (max-width: 910px) {
+	.movie-container {
+		padding: 20px 15px;
+	}
+}
