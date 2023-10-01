@@ -60,7 +60,7 @@ export class MovieList extends Component {
     const errorMessage = error ? (
       <Alert message="Error" description="We could not find the resource you requested." type="error" showIcon />
     ) : null;
-    const content = !(loading && error) ? <MovieListView movies={movies} widthScreen={widthScreen} /> : null;
+    const content = !(loading || error) ? <MovieListView movies={movies} widthScreen={widthScreen} /> : null;
 
     return (
       <ul className={`movie-list ${loading || errorMessage ? 'center' : ''}`}>
