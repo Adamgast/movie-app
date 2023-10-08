@@ -1,7 +1,7 @@
 import './movie-card-mobile.css';
 
 export function MovieCardMobile({ movie, trimText }) {
-  const { title, poster, dateRelease } = movie;
+  const { title, poster, dateRelease, voteAvg } = movie;
   return (
     <article className="movie-card-mobile">
       <div className="movie-mobile-top">
@@ -9,6 +9,7 @@ export function MovieCardMobile({ movie, trimText }) {
           <img src={`https://image.tmdb.org/t/p/original${poster}`} alt={`poster ${title}`} />
         </div>
         <div className="movie-mobile-body">
+          <div className="movie-mobile-rate">{voteAvg.toFixed(1)}</div>
           <h3 className="movie-mobile-title">{title}</h3>
           <div className="movie-mobile-date">{dateRelease}</div>
           <div className="movie-mobile-genres">

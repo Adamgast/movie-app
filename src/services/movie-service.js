@@ -18,9 +18,10 @@ export class MovieService {
     }
   }
 
-  async getAllMovies() {
-    const res = await this.getResource('/search/movie?query=return');
-    return res.results.map(this.transformMovie);
+  async getAllMovies(value, page) {
+    const res = await this.getResource(`/search/movie?query=${value}&page=${page}`);
+    const arrMovies = await res.results.map(this.transformMovie);
+    return [...arrMovies, { page: res.page, totalPages: res.total_pages }];
   }
 
   // eslint-disable-next-line class-methods-use-this

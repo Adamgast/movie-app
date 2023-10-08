@@ -8,6 +8,7 @@
 .movie-mobile-top {
 	display: flex;
 	margin-bottom: 10px;
+	position: relative;
 }
 .movie-mobile-poster {
 	margin-right: 13px;
@@ -21,10 +22,23 @@
 	width: 100%;
 	object-fit: cover;
 }
+.movie-mobile-rate {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	top: 0;
+	right: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid greenyellow;
+	border-radius: 50%;
+}
 .movie-mobile-title {
 	font-size: 20px;
 	line-height: 1.4;
 	margin-bottom: 7px;
+	padding-right: 33px;
 }
 .movie-mobile-date {
 	margin-bottom: 7px;

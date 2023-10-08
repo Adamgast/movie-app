@@ -20,11 +20,25 @@
 	line-height: 1.8;
 	display: flex;
 	flex-direction: column;
+	position: relative;
+}
+.movie-desctop-rate {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	top: 10px;
+	right: 10px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid greenyellow;
+	border-radius: 50%;
 }
 .movie-desctop-title {
 	font-size: 20px;
 	line-height: 1.4;
 	margin-bottom: 7px;
+	padding-right: 30px;
 }
 .movie-desctop-date {
 	margin-bottom: 7px;
