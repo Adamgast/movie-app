@@ -1,5 +1,7 @@
 .movie-card-mobile {
-	height: 245px;
+	display: flex;
+	flex-direction: column;
+	min-height: 245px;
 	font-size: 12px;
 	box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.15);
 	padding: 6px 10px;
@@ -31,14 +33,27 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	border: 2px solid greenyellow;
 	border-radius: 50%;
+}
+.low {
+	border: 2px solid #e90000;
+}
+.middle {
+	border: 2px solid #e97e00;
+}
+.high {
+	border: 2px solid #e9d100;
+}
+.up-high {
+	border: 2px solid #66e900;
 }
 .movie-mobile-title {
 	font-size: 20px;
 	line-height: 1.4;
 	margin-bottom: 7px;
-	padding-right: 33px;
+	margin-right: 33px;
+	max-height: 56px;
+	overflow-y: auto;
 }
 .movie-mobile-date {
 	margin-bottom: 7px;
@@ -46,7 +61,6 @@
 	color: #827e7e;
 }
 .movie-mobile-genres {
-	margin-bottom: 10px;
 }
 .movie-mobile-genres span {
 	color: rgba(0, 0, 0, 0.65);
@@ -60,4 +74,22 @@
 }
 .movie-mobile-bottom {
 	line-height: 1.8;
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+}
+.movie-mobile-description {
+	flex: 1 1 auto;
+}
+
+.ant-rate {
+	margin-left: auto;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+@media (max-width: 399.98px) {
+	.movie-mobile-title {
+		max-width: 268px;
+	}
 }

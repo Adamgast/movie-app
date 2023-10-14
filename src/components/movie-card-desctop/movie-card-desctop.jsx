@@ -1,21 +1,29 @@
+import { RatingStars } from '../rating-stars/rating-stars';
+import { MovieServiceConsumer } from '../movie-service-context/movie-service-context';
+import { Genres } from '../genres/genres';
 import './movie-card-desctop.css';
 
-export function MovieCardDesctop({ movie, trimText }) {
-  const { title, poster, dateRelease, voteAvg } = movie;
+export function MovieCardDesctop({ movie, trimText, idMovie, sessionId, colorOfRate, validImg }) {
+  const { title, poster, genres, dateRelease, voteAvg, rating } = movie;
+
   return (
     <article className="movie-card-desctop">
       <div className="movie-desctop-poster">
-        <img src={`https://image.tmdb.org/t/p/original${poster}`} alt={`poster ${title}`} />
+        <img src={validImg(poster)} alt="poster" />
       </div>
       <div className="movie-desctop-body">
-        <div className="movie-desctop-rate">{voteAvg.toFixed(1)}</div>
+        <div className={`movie-desctop-rate ${colorOfRate(voteAvg)}`}>{voteAvg.toFixed(1)}</div>
         <h3 className="movie-desctop-title">{title}</h3>
         <div className="movie-desctop-date">{dateRelease}</div>
         <div className="movie-desctop-genres">
-          <span>Action</span>
-          <span>Drama</span>
+          <Genres genreIds={genres} />
         </div>
         <div className="movie-desctop-description">{trimText}</div>
+        <MovieServiceConsumer>
+          {({ addRatingMovie }) => (
+            <RatingStars stars={rating} addRatingMovie={addRatingMovie} idMovie={idMovie} sessionId={sessionId} />
+          )}
+        </MovieServiceConsumer>
       </div>
     </article>
   );

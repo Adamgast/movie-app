@@ -1,18 +1,10 @@
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { Spin, Alert } from 'antd';
 
 import { MovieCardDesctop } from '../movie-card-desctop/movie-card-desctop';
 import { MovieCardMobile } from '../movie-card-mobile/movie-card-mobile';
-
 import './movie-list.css';
-
-function trimText(size, fullText) {
-  if (fullText.length >= size) {
-    const cutText = fullText.slice(0, size);
-    return `${cutText.slice(0, cutText.lastIndexOf(' '))}...`;
-  }
-  return fullText;
-}
 
 export class MovieList extends Component {
   constructor(props) {
@@ -34,24 +26,93 @@ export class MovieList extends Component {
     this.setState({ widthScreen: window.innerWidth });
   };
 
+  trimText = (size, fullText) => {
+    if (fullText.length >= size) {
+      const cutText = fullText.slice(0, size);
+      return `${cutText.slice(0, cutText.lastIndexOf(' '))}...`;
+    }
+    return fullText;
+  };
+
+  colorOfRate = (ratingAvg) => {
+    let className = '';
+    if (ratingAvg >= 0 && ratingAvg < 3) {
+      className += 'low';
+    } else if (ratingAvg >= 3 && ratingAvg < 5) {
+      className += 'middle';
+    } else if (ratingAvg >= 5 && ratingAvg < 7) {
+      className += 'high';
+    } else {
+      className += 'up-high';
+    }
+    return className;
+  };
+
+  validImg = (poster) => {
+    const stubImg =
+      'https://png.pngtree.com/element_our/20190603/ourlarge/pngtree-watch-movie-popcorn-illustration-image_1458704.jpg';
+    if (poster) {
+      return `https://image.tmdb.org/t/p/original${poster}`;
+    }
+    return stubImg;
+  };
+
   render() {
     const { widthScreen } = this.state;
-    const { movies, loading, error, noResult } = this.props;
+    const { movies, loading, error, noResult, tabName, sessionId } = this.props;
 
     const spinner = loading ? <Spin size="large" /> : null;
 
-    const noResultMessage =
-      noResult && !loading ? (
-        <Alert message="Information" description="Sorry, movies was not found." type="info" showIcon />
-      ) : null;
+    let noResultMessage;
+    if (tabName === 'search') {
+      if (noResult && !loading) {
+        noResultMessage = (
+          <Alert message="Information" description="Sorry, movies was not found." type="info" showIcon />
+        );
+      }
+    } else if (tabName === 'rated') {
+      if (noResult && !loading) {
+        noResultMessage = (
+          <Alert message="Information" description="You don't have movies you rated." type="info" showIcon />
+        );
+      }
+    }
 
     const errorMessage = error ? (
       <Alert message="Error" description="We could not find the resource you requested." type="error" showIcon />
     ) : null;
 
-    const content = !(loading || error || noResult) ? (
-      <MovieListView movies={movies} widthScreen={widthScreen} />
-    ) : null;
+    let content;
+    if (!(loading || error || noResult)) {
+      content = movies.map((movie) => {
+        const { id, description, ...movieProps } = movie;
+        return (
+          <li key={id} className="movie-item">
+            {widthScreen > 910 ? (
+              <MovieCardDesctop
+                trimText={this.trimText(195, description)}
+                colorOfRate={this.colorOfRate}
+                validImg={this.validImg}
+                movie={movieProps}
+                idMovie={id}
+                sessionId={sessionId}
+              />
+            ) : (
+              <MovieCardMobile
+                trimText={this.trimText(200, description)}
+                colorOfRate={this.colorOfRate}
+                validImg={this.validImg}
+                movie={movieProps}
+                idMovie={id}
+                sessionId={sessionId}
+              />
+            )}
+          </li>
+        );
+      });
+    } else {
+      content = null;
+    }
 
     return (
       <>
@@ -64,21 +125,4 @@ export class MovieList extends Component {
       </>
     );
   }
-}
-
-function MovieListView({ movies, widthScreen }) {
-  const items = movies.map((movie) => {
-    const { id, description, ...movieProps } = movie;
-    return (
-      <li key={id} className="movie-item">
-        {widthScreen > 910 ? (
-          <MovieCardDesctop trimText={trimText(150, description)} movie={movieProps} />
-        ) : (
-          <MovieCardMobile trimText={trimText(190, description)} movie={movieProps} />
-        )}
-      </li>
-    );
-  });
-  // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <>{items}</>;
 }
