@@ -1,12 +1,17 @@
-@media (min-width: 910px) {
+@media (min-width: 499.98px) {
 	.movie-list {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
 		grid-auto-rows: 280px;
+		grid-gap: 15px;
+	}
+}
+@media (min-width: 1004.98px) {
+	.movie-list {
 		grid-gap: 35px;
 	}
 }
-@media (max-width: 910px) {
+@media (max-width: 499.98px) {
 	.movie-item:not(:last-child) {
 		margin-bottom: 20px;
 	}

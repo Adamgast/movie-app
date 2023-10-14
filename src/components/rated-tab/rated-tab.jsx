@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Offline, Online } from 'react-detect-offline';
 import { Alert } from 'antd';
+import PropTypes from 'prop-types';
 
 import { MovieList } from '../movie-list/movie-list';
 import { PaginationBlock } from '../pagination/pagination';
@@ -87,3 +88,9 @@ export class RatedTab extends Component {
     );
   }
 }
+
+RatedTab.propTypes = {
+  getAllRatedMovies: PropTypes.func.isRequired,
+  tabName: PropTypes.string.isRequired,
+  sessionId: PropTypes.string.isRequired,
+};

@@ -92,4 +92,9 @@
 	.movie-mobile-title {
 		max-width: 268px;
 	}
+	.movie-mobile-genres {
+		display: flex;
+		flex-wrap: wrap;
+		row-gap: 5px;
+	}
 }

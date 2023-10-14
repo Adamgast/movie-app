@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Offline, Online } from 'react-detect-offline';
 import { Alert } from 'antd';
+import PropTypes from 'prop-types';
 
 import { MovieList } from '../movie-list/movie-list';
 import { Search } from '../search/search';
@@ -75,3 +76,9 @@ export class SearchTab extends Component {
     );
   }
 }
+
+SearchTab.propTypes = {
+  getAllMovies: PropTypes.func.isRequired,
+  tabName: PropTypes.string.isRequired,
+  sessionId: PropTypes.string.isRequired,
+};

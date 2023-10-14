@@ -15,7 +15,7 @@ export class App extends Component {
     this.movieService = new MovieService();
     this.state = {
       tabName: 'search',
-      sessionId: null,
+      sessionId: '',
       allGenres: [],
       error: false,
     };

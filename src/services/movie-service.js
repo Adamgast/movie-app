@@ -83,11 +83,11 @@ export class MovieService {
       id: movie.id,
       title: movie.title,
       description: movie.overview,
-      poster: movie.poster_path,
-      dateRelease: validDate,
+      poster: movie.poster_path || '',
+      dateRelease: validDate || 'date unknown',
       voteAvg: movie.vote_average,
       genres: movie.genre_ids,
-      rating: movie.rating,
+      rating: movie.rating || 0,
     };
   };
 }

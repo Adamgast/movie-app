@@ -1,3 +1,6 @@
+/* eslint-disable react/forbid-prop-types */
+import PropTypes from 'prop-types';
+
 import { RatingStars } from '../rating-stars/rating-stars';
 import { MovieServiceConsumer } from '../movie-service-context/movie-service-context';
 import { Genres } from '../genres/genres';
@@ -31,3 +34,19 @@ export function MovieCardMobile({ movie, trimText, idMovie, sessionId, colorOfRa
     </article>
   );
 }
+
+MovieCardMobile.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    genres: PropTypes.array.isRequired,
+    dateRelease: PropTypes.string.isRequired,
+    voteAvg: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+  }).isRequired,
+  sessionId: PropTypes.string.isRequired,
+  idMovie: PropTypes.number.isRequired,
+  trimText: PropTypes.string.isRequired,
+  colorOfRate: PropTypes.func.isRequired,
+  validImg: PropTypes.func.isRequired,
+};

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { GenresConsumer } from '../genres-context/genres-context';
 
 export function Genres({ genreIds }) {
@@ -13,3 +15,8 @@ export function Genres({ genreIds }) {
     </GenresConsumer>
   );
 }
+
+Genres.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  genreIds: PropTypes.array.isRequired,
+};

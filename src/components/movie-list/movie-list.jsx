@@ -1,6 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { Spin, Alert } from 'antd';
+import PropTypes from 'prop-types';
 
 import { MovieCardDesctop } from '../movie-card-desctop/movie-card-desctop';
 import { MovieCardMobile } from '../movie-card-mobile/movie-card-mobile';
@@ -88,7 +89,7 @@ export class MovieList extends Component {
         const { id, description, ...movieProps } = movie;
         return (
           <li key={id} className="movie-item">
-            {widthScreen > 910 ? (
+            {widthScreen > 499.98 ? (
               <MovieCardDesctop
                 trimText={this.trimText(195, description)}
                 colorOfRate={this.colorOfRate}
@@ -126,3 +127,13 @@ export class MovieList extends Component {
     );
   }
 }
+
+MovieList.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  movies: PropTypes.array.isRequired,
+  tabName: PropTypes.string.isRequired,
+  sessionId: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
+  noResult: PropTypes.bool.isRequired,
+};

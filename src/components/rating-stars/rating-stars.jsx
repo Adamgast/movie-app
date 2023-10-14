@@ -1,6 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import { Rate } from 'antd';
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class RatingStars extends Component {
   constructor(props) {
@@ -21,3 +22,10 @@ export class RatingStars extends Component {
     return <Rate count={10} onChange={this.handleChange} value={countStars} style={{ fontSize: 15 }} />;
   }
 }
+
+RatingStars.propTypes = {
+  stars: PropTypes.number.isRequired,
+  sessionId: PropTypes.string.isRequired,
+  idMovie: PropTypes.number.isRequired,
+  addRatingMovie: PropTypes.func.isRequired,
+};

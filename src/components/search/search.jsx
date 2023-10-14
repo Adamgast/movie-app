@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { debounce } from 'lodash';
-
+import PropTypes from 'prop-types';
 import './search.css';
 
 export class Search extends Component {
@@ -36,3 +36,7 @@ export class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  updateMovies: PropTypes.func.isRequired,
+};

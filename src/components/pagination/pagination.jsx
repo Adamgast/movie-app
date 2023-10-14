@@ -1,5 +1,6 @@
+/* eslint-disable react/require-default-props */
 import { Pagination } from 'antd';
-
+import PropTypes from 'prop-types';
 import './pagination.css';
 
 export function PaginationBlock({
@@ -26,3 +27,14 @@ export function PaginationBlock({
     </div>
   ) : null;
 }
+
+PaginationBlock.propTypes = {
+  searchValue: PropTypes.string,
+  tabName: PropTypes.string,
+  sessionId: PropTypes.string,
+  page: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  totalResults: PropTypes.number.isRequired,
+  noResult: PropTypes.bool.isRequired,
+  onPagination: PropTypes.func.isRequired,
+};
